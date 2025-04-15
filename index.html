@@ -5,82 +5,129 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>امتحان علوم - ترم تاني</title>
   <style>
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: #f2f4f8;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 800px;
-      margin: 30px auto;
-      background: white;
-      padding: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      border-radius: 15px;
-      direction: rtl;
-    }
-    h1 {
-      text-align: center;
-      color: #2c3e50;
-    }
-    .question {
-      margin-bottom: 25px;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      background-color: #f9f9ff;
-      transition: background-color 0.3s ease;
-    }
-    .question:hover {
-      background-color: #e9f0f7;
-    }
-    .question h3 {
-      margin-bottom: 10px;
-      color: #34495e;
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      cursor: pointer;
-    }
-    input[type="radio"] {
-      margin-left: 8px;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 14px;
-      color: #999;
-    }
-    .start {
-      text-align: center;
-      margin-bottom: 25px;
-      font-weight: bold;
-      color: #555;
-    }
-    .hidden { display: none; }
-    .btn {
-      background: #3498db;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      display: block;
-      margin: 20px auto;
-      font-size: 18px;
-      transition: background-color 0.3s ease;
-    }
-    .btn:hover {
-      background-color: #2980b9;
-    }
-    .timer {
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      color: #e74c3c;
-    }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(135deg, #dfe9f3, #ffffff);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 850px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 35px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  direction: rtl;
+  transition: all 0.4s ease;
+}
+
+h1 {
+  text-align: center;
+  color: #1a1a1a;
+  font-size: 26px;
+  margin-bottom: 30px;
+}
+
+.question {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 2px dashed #a3b1c6;
+  border-radius: 15px;
+  background-color: #f7faff;
+  transition: all 0.3s ease;
+}
+
+.question:hover {
+  background-color: #e0f4ff;
+  transform: scale(1.02);
+}
+
+.question h3 {
+  margin-bottom: 12px;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  background: #f2f2f2;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+label:hover {
+  background-color: #d9ebff;
+}
+
+input[type="radio"] {
+  margin-left: 8px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #777;
+}
+
+.start {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #444;
+}
+
+.hidden {
+  display: none;
+}
+
+.btn {
+  background: linear-gradient(to right, #3498db, #5dade2);
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  display: block;
+  margin: 25px auto;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #2e86c1;
+  transform: scale(1.05);
+}
+
+.timer {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-bottom: 25px;
+}
+
+input[type="text"] {
+  width: 100%;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 14px 20px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
   </style>
 </head>
 <body>
@@ -119,7 +166,7 @@
       { q: "3. من أمثلة الجينات السائدة:", name: "q3", options: ["لون العيون الأزرق", "الشعر الناعم", "الشعر المجعد", "الطول القصير"], correct: "الشعر المجعد" },
       { q: "4. لون هيدروكسيد النحاس هو:", name: "q4", options: ["احمر", "اخضر", "ازرق", "اسود"], correct: "ازرق" },
       { q: "5. لون كربونات النحاس هو:", name: "q5", options: ["اخضر", "احمر", "ازرق", "اسود"], correct: "اخضر" },
-      { q: "6. يعتبر الألومنيوم أنشط كيميائيًا من:", name: "q6", options: ["الماغنسيوم", "البوتاسيوم", "الباريوم", "جميع ما سبق"], correct: "جميع ما سبق" },
+      { "q": "6. يعتبر الألومنيوم أقل نشاطًا كيميائيًا من:", "name": "q6", "options": ["الماغنسيوم", "البوتاسيوم", "الباريوم", "جميع ما سبق"], "correct": "جميع ما سبق" },
       { q: "7. تفاعل حمض مع قلوي يسمى بـ:", name: "q7", options: ["الاختزال", "الأكسدة", "التعادل", "الاحلال"], correct: "التعادل" },
       { q: "8. تفاعل ملح مع ملح يسمى بـ:", name: "q8", options: ["التعادل", "الاختزال", "الترسيب", "الانحلال"], correct: "الترسيب" },
       { q: "9. تعمل الفلزات كـ:", name: "q9", options: ["عوامل مؤكسدة", "عوامل مختزلة"], correct: "عوامل مختزلة" },
@@ -198,5 +245,18 @@
       document.querySelectorAll('.question').forEach(q => q.style.display = "none");
     }
   </script>
+  <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/67f03710462e11191019759e/1io15e6gv';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>
