@@ -1,163 +1,118 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>امتحان علوم - ترم تاني</title>
+  <meta charset="UTF-8">
+  <title>علوم - 3 اعدادي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-body {
-  font-family: 'Cairo', sans-serif;
-  background: linear-gradient(135deg, #dfe9f3, #ffffff);
-  margin: 0;
-  padding: 0;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 
-.container {
-  max-width: 850px;
-  margin: 30px auto;
-  background: #fff;
-  padding: 35px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  border-radius: 20px;
-  direction: rtl;
-  transition: all 0.4s ease;
-}
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      color: #fff;
+      padding: 30px;
+      direction: rtl;
+    }
 
-h1 {
-  text-align: center;
-  color: #1a1a1a;
-  font-size: 26px;
-  margin-bottom: 30px;
-}
+    @keyframes gradientBG {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
+    }
 
-.question {
-  margin-bottom: 30px;
-  padding: 20px;
-  border: 2px dashed #a3b1c6;
-  border-radius: 15px;
-  background-color: #f7faff;
-  transition: all 0.3s ease;
-}
+    .question {
+      margin-bottom: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 20px rgba(0,255,255,0.05);
+      transition: 0.3s;
+    }
 
-.question:hover {
-  background-color: #e0f4ff;
-  transform: scale(1.02);
-}
+    .question:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px rgba(0,255,255,0.3);
+    }
 
-.question h3 {
-  margin-bottom: 12px;
-  color: #2c3e50;
-  font-size: 18px;
-}
+    .hidden {
+      display: none;
+    }
 
-label {
-  display: block;
-  margin-bottom: 10px;
-  padding: 8px 12px;
-  background: #f2f2f2;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
+    h1 {
+      font-size: 32px;
+      color: #00ffe7;
+      text-shadow: 0 0 15px #00ffe7;
+    }
 
-label:hover {
-  background-color: #d9ebff;
-}
+    button {
+      padding: 12px 25px;
+      background: #00ffe7;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 0 15px #00ffe7;
+      transition: 0.3s;
+    }
 
-input[type="radio"] {
-  margin-left: 8px;
-}
+    button:hover {
+      background: #0ff;
+      box-shadow: 0 0 25px #0ff;
+      transform: scale(1.05);
+    }
 
-.footer {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 14px;
-  color: #777;
-}
+    input[type="text"] {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      width: 280px;
+      margin-bottom: 20px;
+      background-color: #fff;
+      color: #000;
+      font-size: 16px;
+    }
 
-.start {
-  text-align: center;
-  margin-bottom: 25px;
-  font-weight: bold;
-  color: #444;
-}
+    #result {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 25px;
+      border-radius: 20px;
+      margin-top: 25px;
+      box-shadow: 0 0 25px rgba(0,255,255,0.2);
+      animation: fadeIn 1s ease;
+    }
 
-.hidden {
-  display: none;
-}
+    details summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #00ffe7;
+      margin-top: 10px;
+    }
 
-.btn {
-  background: linear-gradient(to right, #3498db, #5dade2);
-  color: white;
-  padding: 14px 30px;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  display: block;
-  margin: 25px auto;
-  font-size: 20px;
-  transition: all 0.3s ease;
-}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-.btn:hover {
-  background-color: #2e86c1;
-  transform: scale(1.05);
-}
-
-.timer {
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  color: #e74c3c;
-  margin-bottom: 25px;
-}
-
-input[type="text"] {
-  width: 100%;
-  font-size: 16px;
-  margin-top: 10px;
-  padding: 14px 20px;
-  border-radius: 15px;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  transition: border-color 0.3s ease;
-}
-
-input[type="text"]:focus {
-  border-color: #3498db;
-  outline: none;
-}
-
+    b {
+      color: #0ff;
+    }
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <h1>🌟 امتحان علوم - الصف الثالث الإعدادي - الترم الثاني 🌟</h1>
-
-    <!-- اسم الطالب -->
-    <label for="studentName">اسم الطالب:</label>
-    <input type="text" id="studentName" placeholder="أدخل اسمك هنا" style="padding: 15px 20px; border-radius: 20px; border: 1px solid #ccc;">
-    <br><br>
-
-    <!-- المؤقت -->
-    <div class="timer" id="timer">الوقت المتبقي: 15:00</div>
-
-    <!-- الأسئلة -->
-    <div id="questionsArea"></div>
-
-    <button class="btn" onclick="evaluateExam()">إنهاء الامتحان</button>
-
-    <!-- النتيجة -->
-    <div id="result" class="hidden">
-      <h3>النتيجة:</h3>
-      <p id="resultName"></p>
-      <p id="resultScore"></p>
-      <p id="resultModelAnswer"></p>
-    </div>
-
-    <div class="footer">بالتوفيق <b>معاكم محمد عبدالفتاح</b>! 💪😄</div>
-  </div>
+  <h1>امتحان علوم - الترم التاني</h1>
+  <input type="text" id="studentName" placeholder="اسمك هنا يا نجم ✨"><br>
+  <form id="quizForm">
+    <div id="questionsContainer"></div>
+    <button type="submit">سلم الامتحان 🎯</button>
+  </form>
+  <div id="result" class="hidden"></div>
 
   <script>
     const questions = [
@@ -166,7 +121,7 @@ input[type="text"]:focus {
       { q: "3. من أمثلة الجينات السائدة:", name: "q3", options: ["لون العيون الأزرق", "الشعر الناعم", "الشعر المجعد", "الطول القصير"], correct: "الشعر المجعد" },
       { q: "4. لون هيدروكسيد النحاس هو:", name: "q4", options: ["احمر", "اخضر", "ازرق", "اسود"], correct: "ازرق" },
       { q: "5. لون كربونات النحاس هو:", name: "q5", options: ["اخضر", "احمر", "ازرق", "اسود"], correct: "اخضر" },
-      { "q": "6. يعتبر الألومنيوم أقل نشاطًا كيميائيًا من:", "name": "q6", "options": ["الماغنسيوم", "البوتاسيوم", "الباريوم", "جميع ما سبق"], "correct": "جميع ما سبق" },
+      { "q": "6. يعتبر الألومنيوم أقل نشاطًا كيميائيًا من:", "name": "q6", "options": ["الماغنسيوم", "البوتاسيوم", "الباريوم", "جميع ما سبق"], "correct": "جميع ما سبق" }
       { q: "7. تفاعل حمض مع قلوي يسمى بـ:", name: "q7", options: ["الاختزال", "الأكسدة", "التعادل", "الاحلال"], correct: "التعادل" },
       { q: "8. تفاعل ملح مع ملح يسمى بـ:", name: "q8", options: ["التعادل", "الاختزال", "الترسيب", "الانحلال"], correct: "الترسيب" },
       { q: "9. تعمل الفلزات كـ:", name: "q9", options: ["عوامل مؤكسدة", "عوامل مختزلة"], correct: "عوامل مختزلة" },
@@ -188,62 +143,47 @@ input[type="text"]:focus {
       { q: "25. الهرمون المسؤول عن مظاهر البلوغ في الذكر:", name: "q25", options: ["الاستروجين", "البروجيستيرون", "التستوستيرون"], correct: "التستوستيرون" },
     ];
 
-    const questionsArea = document.getElementById("questionsArea");
+    const form = document.getElementById("quizForm");
+    const questionsContainer = document.getElementById("questionsContainer");
+    const result = document.getElementById("result");
 
-    questions.forEach(q => {
+    questions.forEach((q, i) => {
       const div = document.createElement("div");
-      div.className = "question";
-      div.innerHTML = `<h3>${q.q}</h3>` + q.options.map(option =>
-        `<label><input type="radio" name="${q.name}" value="${option}"> ${option}</label>` 
-      ).join("");
-      questionsArea.appendChild(div);
+      div.classList.add("question");
+      div.innerHTML = `<p><b>س${i + 1}:</b> ${q.question}</p>` +
+        q.choices.map(choice =>
+          `<label><input type="radio" name="q${i}" value="${choice}"> ${choice}</label><br>`
+        ).join('');
+      questionsContainer.appendChild(div);
     });
 
-    let time = 15 * 60;
-    const timerDisplay = document.getElementById("timer");
-
-    function updateTimer() {
-      let minutes = Math.floor(time / 60);
-      let seconds = time % 60;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-      timerDisplay.textContent = `الوقت المتبقي: ${minutes}:${seconds}`;
-      if (time > 0) {
-        time--;
-        setTimeout(updateTimer, 1000);
-      } else {
-        timerDisplay.textContent = "انتهى الوقت ⏰";
-        alert("انتهى وقت الامتحان! ✋");
-        evaluateExam();
-      }
-    }
-
-    updateTimer();
-
-    function evaluateExam() {
-      const name = document.getElementById("studentName").value;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("studentName").value.trim();
       if (!name) {
-        alert("من فضلك أدخل اسمك أولاً 🙏");
+        alert("اكتب اسمك الأول يا معلم!");
         return;
       }
 
       let score = 0;
-      let total = questions.length;
-      let modelAnswers = "";
-
-      questions.forEach(q => {
-        const selected = document.querySelector(`input[name="${q.name}"]:checked`);
-        if (selected && selected.value === q.correct) {
+      let feedback = "";
+      questions.forEach((q, i) => {
+        const selected = form[`q${i}`].value;
+        if (selected === q.answer) {
           score++;
+        } else {
+          feedback += `<details><summary>❌ السؤال ${i + 1}:</summary>
+          <p><b>سؤال:</b> ${q.question}<br>
+          <b>إجابتك:</b> ${selected || "ما جاوبتش"}<br>
+          <b>الصحيح:</b> ${q.answer}</p></details>`;
         }
-        modelAnswers += `✔️ ${q.q} <b>${q.correct}</b><br>`;
       });
 
-      document.getElementById("resultName").innerHTML = `الاسم: <b>${name}</b>`;
-      document.getElementById("resultScore").innerHTML = `الدرجة: <b>${score} من ${total}</b>`;
-      document.getElementById("resultModelAnswer").innerHTML = `<br><details><summary>عرض الإجابات النموذجية 📘</summary><br>${modelAnswers}</details>`;
-      document.getElementById("result").classList.remove("hidden");
-      document.querySelectorAll('.question').forEach(q => q.style.display = "none");
-    }
+      const percentage = (score / questions.length) * 100;
+      result.classList.remove("hidden");
+      result.innerHTML = `<h2>👑 النتيجة: ${score} من ${questions.length} (${percentage.toFixed(0)}%)</h2>` +
+        (feedback ? `<h3>الأخطاء:</h3>${feedback}` : "<p>كله صح يا وحش 🔥</p>");
+    });
   </script>
   <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -251,7 +191,7 @@ var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
 s1.async=true;
-s1.src='https://embed.tawk.to/67f03710462e11191019759e/1io15e6gv';
+s1.src='https://embed.tawk.to/67fe4ca3312b4c190fc68e37/1ioslmnt7';
 s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
