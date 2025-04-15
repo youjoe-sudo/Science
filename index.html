@@ -69,12 +69,14 @@
     }
 
     input[type="text"] {
-      padding: 12px;
-      border: none;
+      padding: 12pxك
       border-radius: 10px;
       width: 280px;
       margin-bottom: 20px;
-      background-color: #fff;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 20px rgba(0,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       color: #000;
       font-size: 16px;
     }
@@ -121,7 +123,7 @@
       { q: "3. من أمثلة الجينات السائدة:", name: "q3", options: ["لون العيون الأزرق", "الشعر الناعم", "الشعر المجعد", "الطول القصير"], correct: "الشعر المجعد" },
       { q: "4. لون هيدروكسيد النحاس هو:", name: "q4", options: ["احمر", "اخضر", "ازرق", "اسود"], correct: "ازرق" },
       { q: "5. لون كربونات النحاس هو:", name: "q5", options: ["اخضر", "احمر", "ازرق", "اسود"], correct: "اخضر" },
-      { "q": "6. يعتبر الألومنيوم أقل نشاطًا كيميائيًا من:", "name": "q6", "options": ["الماغنسيوم", "البوتاسيوم", "الباريوم", "جميع ما سبق"], "correct": "جميع ما سبق" }
+      { q: "6. يعتبر الألومنيوم أقل نشاطًا كيميائيًا من:", name: "q6", options: ["الماغنسيوم", "البوتاسيوم", "الباريوم", "جميع ما سبق"], correct: "جميع ما سبق" },
       { q: "7. تفاعل حمض مع قلوي يسمى بـ:", name: "q7", options: ["الاختزال", "الأكسدة", "التعادل", "الاحلال"], correct: "التعادل" },
       { q: "8. تفاعل ملح مع ملح يسمى بـ:", name: "q8", options: ["التعادل", "الاختزال", "الترسيب", "الانحلال"], correct: "الترسيب" },
       { q: "9. تعمل الفلزات كـ:", name: "q9", options: ["عوامل مؤكسدة", "عوامل مختزلة"], correct: "عوامل مختزلة" },
@@ -140,7 +142,7 @@
       { q: "22. مؤسس علم الوراثة هو:", name: "q22", options: ["جريجوريوهان مندل", "تاتوم", "بيدل"], correct: "جريجوريوهان مندل" },
       { q: "23. لون البذرة السائد هو:", name: "q23", options: ["اخضر", "اصفر", "احمر", "ابيض"], correct: "اصفر" },
       { q: "24. يفرز البنكرياس هرمون :", name: "q24", options: ["الأنسولين", "الثيروكسين", "الكاسيتونين", "الاستروجين"], correct: "الأنسولين" },
-      { q: "25. الهرمون المسؤول عن مظاهر البلوغ في الذكر:", name: "q25", options: ["الاستروجين", "البروجيستيرون", "التستوستيرون"], correct: "التستوستيرون" },
+      { q: "25. الهرمون المسؤول عن مظاهر البلوغ في الذكر:", name: "q25", options: ["الاستروجين", "البروجيستيرون", "التستوستيرون"], correct: "التستوستيرون" }
     ];
 
     const form = document.getElementById("quizForm");
@@ -150,9 +152,9 @@
     questions.forEach((q, i) => {
       const div = document.createElement("div");
       div.classList.add("question");
-      div.innerHTML = `<p><b>س${i + 1}:</b> ${q.question}</p>` +
-        q.choices.map(choice =>
-          `<label><input type="radio" name="q${i}" value="${choice}"> ${choice}</label><br>`
+      div.innerHTML = `<p><b>س${i + 1}:</b> ${q.q}</p>` +
+        q.options.map(opt =>
+          `<label><input type="radio" name="${q.name}" value="${opt}"> ${opt}</label><br>`
         ).join('');
       questionsContainer.appendChild(div);
     });
@@ -161,42 +163,40 @@
       e.preventDefault();
       const name = document.getElementById("studentName").value.trim();
       if (!name) {
-        alert("اكتب اسمك الأول يا معلم!");
+        alert("اكتب اسمك الأول يا نجم!");
         return;
       }
 
       let score = 0;
       let feedback = "";
+
       questions.forEach((q, i) => {
-        const selected = form[`q${i}`].value;
-        if (selected === q.answer) {
+        const selected = form[q.name].value;
+        if (selected === q.correct) {
           score++;
         } else {
           feedback += `<details><summary>❌ السؤال ${i + 1}:</summary>
-          <p><b>سؤال:</b> ${q.question}<br>
+          <p><b>سؤال:</b> ${q.q}<br>
           <b>إجابتك:</b> ${selected || "ما جاوبتش"}<br>
-          <b>الصحيح:</b> ${q.answer}</p></details>`;
+          <b>الصحيح:</b> ${q.correct}</p></details>`;
         }
       });
 
       const percentage = (score / questions.length) * 100;
+
+      // ✅ التخزين المحلي:
+      const data = {
+        name: name,
+        score: score,
+        percentage: percentage.toFixed(0),
+        date: new Date().toLocaleString()
+      };
+      localStorage.setItem("quiz_result", JSON.stringify(data));
+
       result.classList.remove("hidden");
       result.innerHTML = `<h2>👑 النتيجة: ${score} من ${questions.length} (${percentage.toFixed(0)}%)</h2>` +
         (feedback ? `<h3>الأخطاء:</h3>${feedback}` : "<p>كله صح يا وحش 🔥</p>");
     });
   </script>
-  <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/67fe4ca3312b4c190fc68e37/1ioslmnt7';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
 </body>
 </html>
